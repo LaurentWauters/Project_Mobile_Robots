@@ -17,13 +17,18 @@ export class RobotService {
 	robotUrl = 'http://192.168.56.101:5000/';
 
   constructor(public http: Http) {
-    console.log('Hello RobotService Provider');
+    console.log(""+this.getRobot());
   }
 
   //-------------------------------------------------
   //Darm-deel
   //-------------------------------------------------
 
+  //Initializes robot
+  getRobot(): Observable<Robot> {
+    return this.http.get(`${this.robotUrl}/getRobot()`)
+      .map(res => <Robot>res.json());
+  }
 /*
   //Gets IP of current bot
   getIP(): any {
