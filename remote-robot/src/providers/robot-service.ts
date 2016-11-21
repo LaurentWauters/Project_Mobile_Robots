@@ -1,6 +1,10 @@
 import { Injectable } from '@angular/core';
 import { Http } from '@angular/http';
+import { Observable } from 'rxjs/Rx';
 import 'rxjs/add/operator/map';
+
+//Import custom model
+import { Robot } from '../models/robot';
 
 /*
   Generated class for the RobotService provider.
@@ -10,6 +14,7 @@ import 'rxjs/add/operator/map';
 */
 @Injectable()
 export class RobotService {
+	robotUrl = 'http://192.168.56.101:5000/';
 
   constructor(public http: Http) {
     console.log('Hello RobotService Provider');
@@ -18,6 +23,13 @@ export class RobotService {
   //-------------------------------------------------
   //Darm-deel
   //-------------------------------------------------
+
+/*
+  //Gets IP of current bot
+  getIP(): any {
+    return this.http.get(`${this.robotUrl}/getBatteryLevel`).map(res => res.json());
+  }
+*/
 
   //-------------------------------------------------
   //Skagoo-deel
