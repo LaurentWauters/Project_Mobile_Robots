@@ -6,6 +6,8 @@ import { ContactPage } from '../pages/contact/contact';
 import { HomePage } from '../pages/home/home';
 import { TabsPage } from '../pages/tabs/tabs';
 
+import { RobotService } from '../providers/robot-service.ts';
+
 @NgModule({
   declarations: [
     MyApp,
@@ -25,6 +27,8 @@ import { TabsPage } from '../pages/tabs/tabs';
     HomePage,
     TabsPage
   ],
-  providers: []
+  providers: [
+     RobotService
+  ]
 })
 export class AppModule {}
