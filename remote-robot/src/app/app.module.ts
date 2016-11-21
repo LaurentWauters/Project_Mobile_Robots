@@ -1,20 +1,23 @@
 import { NgModule } from '@angular/core';
 import { IonicApp, IonicModule } from 'ionic-angular';
 import { MyApp } from './app.component';
-import { AboutPage } from '../pages/about/about';
-import { ContactPage } from '../pages/contact/contact';
+
 import { HomePage } from '../pages/home/home';
-import { TabsPage } from '../pages/tabs/tabs';
+import { ActionsPage } from '../pages/actions/actions';
+import { SayPage } from '../pages/say/say';
+import { ManualPage } from '../pages/manual/manual';
+import { SettingsPage } from '../pages/settings/settings';
 
 import { RobotService } from '../providers/robot-service.ts';
 
 @NgModule({
   declarations: [
     MyApp,
-    AboutPage,
-    ContactPage,
     HomePage,
-    TabsPage
+    ActionsPage,
+    SayPage,
+    ManualPage,
+    SettingsPage
   ],
   imports: [
     IonicModule.forRoot(MyApp)
@@ -22,10 +25,11 @@ import { RobotService } from '../providers/robot-service.ts';
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
-    AboutPage,
-    ContactPage,
     HomePage,
-    TabsPage
+    ActionsPage,
+    SayPage,
+    ManualPage,
+    SettingsPage
   ],
   providers: [
      RobotService
