@@ -3,7 +3,6 @@ import { Http } from '@angular/http';
 import { Observable } from 'rxjs/Rx';
 import 'rxjs/add/operator/map';
 
-//Import custom model
 import { Robot } from '../models/robot';
 
 /*
@@ -15,6 +14,8 @@ import { Robot } from '../models/robot';
 @Injectable()
 export class RobotService {
 	robotUrl = 'http://192.168.56.101:5000/';
+
+  robotRootUrl = 'http://10.135.227.220:5000';
 
   constructor(public http: Http) {
     console.log(""+this.getRobot());
@@ -40,4 +41,9 @@ export class RobotService {
   //Skagoo-deel
   //-------------------------------------------------
 
+  // Login Robot - Basicly pings the root url of the RAL API. If response is http successcode 200, robot is online.
+  login(): any {
+    return this.http.get(`${this.robotRootUrl}`)
+      .map(res => res);
+  }
 }

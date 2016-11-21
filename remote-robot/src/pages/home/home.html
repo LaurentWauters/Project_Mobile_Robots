@@ -11,4 +11,14 @@
 
 <ion-content padding>
 	<h3>Home page</h3>
+
+	<div *ngIf="loginSuccess">
+		<h1>Successfully pinged robot</h1>
+		<p>Render robot stuff</p>
+	</div>
+	<div *ngIf="!loginSuccess">
+		<h1>Unsuccessfully pinged robot</h1>
+		<p>Render error message and DO NOT render robot stuff</p>
+	</div>
+
 </ion-content>

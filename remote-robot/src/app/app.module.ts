@@ -8,7 +8,7 @@ import { SayPage } from '../pages/say/say';
 import { ManualPage } from '../pages/manual/manual';
 import { SettingsPage } from '../pages/settings/settings';
 
-import { RobotService } from '../providers/robot-service.ts';
+import { RobotService } from '../providers/robot-service';
 
 @NgModule({
   declarations: [
