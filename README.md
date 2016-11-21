@@ -1,7 +1,7 @@
 # Remote robot app - Integrated project: Mobile   
 
 ##App description  
-Through the use of [AngularJS](https://www.codeschool.com/courses/shaping-up-with-angular-js) & [Ionic](https://www.ionicframework.com/docs/v2/getting-started/tutorial/), a scalable web & platformindependent application is created.
+Through the use of [Angular 2](https://angular.io/) & [Ionic 2](https://www.ionicframework.com/docs/v2/getting-started/tutorial/), a scalable web & platformindependent application is created.
 [MongoDB](https://docs.mongodb.com/?_ga=1.96068508.1489278388.1479118631) is used to save "settings";  
 * Reconnect on startup w most recent robot?  
 * How many in list of recent robots to show? (all are saved tho)
@@ -9,6 +9,21 @@ Through the use of [AngularJS](https://www.codeschool.com/courses/shaping-up-wit
 ##Specs   
 * Keep connection open for 2 hours, reprompt for IP after.  
 * Show actions / type of robot bc not every robot can undertake same actions  
+
+##API Calls
+* __/__ returns a hello world  
+* __/getIP__ returns IP from current robot (always 127.0.0.1)
+* __/getType__ returns type of robot  
+* __/getName__ returns name of robot (only 'Mister Nao' atm)  
+* __/charge__ returns 'charging' as status 
+* __/unplug__ returns 'unplugged' as status
+* __/getBatteryLevel__ returns battery level of robot    
+* __/getActions__ returns 8 actions to be performed  
+* __/actions/<string:actionName>__ returns the current posture   
+* __/ask/<string:text>__ returns the input-text  
+* __/move/<int:x>/<int:y>/<int:d>__ returns new coordinates, requires x, y coordinate + angle to turn  
+* __/getRobot__ returns robot with all values for internal model (w/out images)  
+
 
 ##Database  
 MongoDB will be used to save all through JSON __IF__ DB is global, online. __ELSE__ Sqlite is used to save local.  
@@ -51,7 +66,6 @@ Shows preferences to be saved. No save button, click/select is autosaved to DB a
 
 ####Manual view  
 Shows tree view of all actions for all types as treeview; opens currently selected as standard and a __back__ button.  
-
 
 ##Questions still open to interpretation  
 * User option in hamburger  

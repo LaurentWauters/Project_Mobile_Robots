@@ -13,6 +13,7 @@ import { Robot } from '../models/robot';
 */
 @Injectable()
 export class RobotService {
+	robotUrl = 'http://192.168.56.101:5000/';
 
   robotRootUrl = 'http://10.135.227.220:5000';
 
@@ -23,6 +24,13 @@ export class RobotService {
   //-------------------------------------------------
   //Darm-deel
   //-------------------------------------------------
+
+/*
+  //Gets IP of current bot
+  getIP(): any {
+    return this.http.get(`${this.robotUrl}/getBatteryLevel`).map(res => res.json());
+  }
+*/
 
   //-------------------------------------------------
   //Skagoo-deel
