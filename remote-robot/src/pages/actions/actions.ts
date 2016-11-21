@@ -2,14 +2,14 @@ import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
 
 @Component({
-  selector: 'page-home',
-  templateUrl: 'home.html'
+  selector: 'page-actions',
+  templateUrl: 'actions.html'
 })
-export class HomePage {
+export class ActionsPage {
 
   constructor(public navCtrl: NavController) {}
 
   ionViewDidLoad() {
-    console.log('Hello Home Page');
+    console.log('Hello Actions Page');
   }
 }
