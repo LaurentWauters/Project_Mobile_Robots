@@ -1,7 +1,7 @@
 # Remote robot app - Integrated project: Mobile   
 
 ##App description  
-Through the use of [AngularJS](https://www.codeschool.com/courses/shaping-up-with-angular-js) & [MeteorJS](https://www.meteor.com/tutorials/angular/creating-an-app), a scalable web & platformindependent application is created.
+Through the use of [AngularJS](https://www.codeschool.com/courses/shaping-up-with-angular-js) & [Ionic](https://www.ionicframework.com/docs/v2/getting-started/tutorial/), a scalable web & platformindependent application is created.
 [MongoDB](https://docs.mongodb.com/?_ga=1.96068508.1489278388.1479118631) is used to save "settings";  
 * Reconnect on startup w most recent robot?  
 * How many in list of recent robots to show? (all are saved tho)
