@@ -1,12 +1,13 @@
-#!flask/bin/python
+##!flask/bin/python
 import sys
 sys.path.append("/usr/lib/pynaoqi")
 from datetime import timedelta
-from flask import Flask, make_response, request, current_app, abort, jsonify
-from functools import update_wrapper
+from flask import Flask, abort, jsonify, request, make_response, current_app
 import naoqi
+from random import randint
+import json 
+from functools import update_wrapper
 from naoqi import ALProxy
-#import logger
 
 app = Flask(__name__)
 
@@ -15,6 +16,11 @@ webserverIp = "0.0.0.0"
 nao_port = 9559
 battery = 100
 chargeStatus = True
+randNum = 0    
+
+#logger = logger.Logger(4) # Initialize logger with level "debug"
+
+#CROSSDOMAIN SHIZZLE
 
 def crossdomain(origin=None, methods=None, headers=None, max_age=21600, attach_to_all=True, automatic_options=True):  
     if methods is not None:
@@ -55,85 +61,121 @@ def crossdomain(origin=None, methods=None, headers=None, max_age=21600, attach_t
         return update_wrapper(wrapped_function, f)
     return decorator
 
-def batteryAction():
-    time.sleep(5)
-    if chargeStatus:
-	while battery <= 100:
-		battery += 1
-    else:
-	battery -= 1
-
-#logger = logger.Logger(4) # Initialize logger with level "debug"
-
+#INDEX
 @app.route('/')
 @crossdomain(origin='*')
 def index():
-    battery_thread = threading.Thread(target=batteryAction)
-    battery_thread.start()
     return "Hello Robotic World!"
+
+#IP
+def getIP():
+    return nao_host
 
 @app.route('/getIP', methods=['GET'])
 @crossdomain(origin='*')
-def getIP():
-    return jsonfify({'IP': nao_host}), 200
-	
+def getIP_HTTP():
+    return jsonify({'IP': getIP()}), 200
+
+#TYPE
+def getType():
+    if randNum == 0:
+        return "PEPPER"
+    elif randNum == 1:
+        return "NAO"
+    elif randNum == 2:
+        return "BUDDY"
+    else:
+        return "JIBO"
+
 @app.route('/getType', methods=['GET'])
 @crossdomain(origin='*')
-def getType():
-    randNum = randint(0,2)
+def getType_HTTP():
+    return jsonify({'type':getType()}), 200
 
+#NAME
+def getName():
     if randNum == 0:
-    	return jsonify({'type': "PEPPER"}), 200
+        return "Mister Pepperoni"
     elif randNum == 1:
-	return jsonify({'type': "NAO"}), 200
+        return "Mister I_want_it_Nao"
+    elif randNum == 2:
+        return "Mister Buttbuddy"
     else:
-	return jsonify({'type': "BUDDY"}), 200
-	
+        return "Mister Hibo_jibo"
+
 @app.route('/getName', methods=['GET'])
 @crossdomain(origin='*')
-def getName():
-    return jsonify({'name': "Mister NAO"}), 200
+def getName_HTTP():
+    return jsonify({'name':getName()}), 200
+
+#CHARGE
+def charging():
+    chargeStatus = True
+    return "charging"
 
 @app.route('/charge', methods=['GET'])
 @crossdomain(origin='*')
-def charging():
-    chargeStatus = True
-    return jsonify({'status': "charging"}), 200
+def charging_HTTP():
+    return jsonify({'chargeStatus':charging()}), 200
+
+#UNPLUG
+def unplug():
+    chargeStatus = False
+    return "unplugged"
 
 @app.route('/unplug', methods=['GET'])
 @crossdomain(origin='*')
-def unplug():
-    chargeStatus = False
-    return jsonify({'status': "unplugged"}), 200
-	
-@app.route('/getBatteryLevel', methods=['GET'])
-@crossdomain(origin='*')
+def unplug_HTTP():
+    return jsonify({'chargeStatus':unplug()}), 200
+
+#BATTERY LEVEL
 def getBatteryLevel():
     batt_json = json.dumps(battery)
-    return jsonify({'level': batt_json}), 200
-	
+    return batt_json
+
+@app.route('/getBatteryLevel', methods=['GET'])
+@crossdomain(origin='*')
+def getBatteryLevel_HTTP():
+    return jsonify({'batteryLevel':getBatteryLevel()}), 200
+
+#GET ACTIONS
+def getActions():
+    return ["StandInit","SitRelax","StandZero","LyingBelly","LyingBack","Stand","Crouch","Sit"]
+
 @app.route('/getActions', methods=['GET'])
 @crossdomain(origin='*')
-def getActions():
-    return jsonify({'actions': ["StandInit","SitRelax","StandZero","LyingBelly","LyingBack","Stand","Crouch","Sit"]}), 200
+def getActions_HTTP():
+    return jsonify({'actions':getActions()}), 200
 
-@app.route('/actions/<string:actionName>', methods=['GET'])
-@crossdomain(origin='*')
+#DO ACTION
 def doAction(actionName):
     postureProxy = ALProxy("ALRobotPosture", nao_host, nao_port)
     postureProxy.goToPosture(str(actionName), 1.0)
-    return jsonify({'posture': postureProxy.getPostureFamily()}), 200
+    return postureProxy.getPostureFamily()
 
-@app.route('/ask/<string:text>', methods=['GET'])
+@app.route('/actions/<string:actionName>', methods=['GET'])
 @crossdomain(origin='*')
+def doAction_HTTP(actionName):
+    return jsonify({'posture':doAction(actionName)}), 200
+
+#ASK
 def ask(text):
     tts = ALProxy("ALTextToSpeech", nao_host, nao_port)
     tts.say(str(text))
-    return jsonify({'text': text}), 200
+    return text
 
-#http://doc.aldebaran.com/2-1/_downloads/almotion_moveTo1.py
-@app.route('/move/<int:x>/<int:y>/<int:d>', methods=['GET'])
+@app.route('/ask/<string:text>', methods=['GET'])
 @crossdomain(origin='*')
+def ask_HTTP(text):
+    return jsonify({'text': ask(text)}), 200
+
+@app.route('/fart', methods=['GET'])
+@crossdomain(origin='*')
+def fart():
+    return ask_HTTP("pfffffrrrttrtrfrtrfrtrttrffrfrtttrfrt")
+
+#MOVE
+#http://doc.aldebaran.com/2-1/_downloads/almotion_moveTo1.py
 def move(x,y,d):
     motionProxy = ALProxy("ALMotion", nao_host, nao_port)
     motionProxy.wakeUp()
@@ -141,12 +183,22 @@ def move(x,y,d):
     yCoo = float(y)
     theta = float(d)
     motionProxy.moveTo(xCoo, yCoo, theta)
-    return jsonify({'coordinates': [x,y,d]}), 200
+    return [x,y,d]
+
+@app.route('/move/<int:x>/<int:y>/<int:d>', methods=['GET'])
+@crossdomain(origin='*')
+def move_HTTP(x,y,d):
+    return jsonify({'coordinates': move(x,y,d)}), 200
+
+#GET ALL FROM ROBOT
+def getRobot():
+    return jsonify({'ip':getIP(), 'type':getType(), 'name':getName(), 'batteryLevel':getBatteryLevel(), 'chargeStatus':chargeStatus, 'posture':doAction("StandInit"), 'actions':getActions()})
 
 @app.route('/getRobot', methods=['GET'])
 @crossdomain(origin='*')
-def getRobot():
-    return jsonify({'ip':getIP(), 'type':getType(), 'name':getName(), 'batteryLevel':getBatteryLevel(), 'chargeStatus':chargeStatus, 'posture':doAction("StandInit"), 'actions':getActions()}), 200
+def getRobot_HTTP():
+    return getRobot(), 200
 
 if __name__ == '__main__':
     app.run(debug=True,host=webserverIp)
+    randNum = randint(0,2)
