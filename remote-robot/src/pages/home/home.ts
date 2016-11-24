@@ -43,11 +43,17 @@ export class HomePage {
 	};
 
 	drawCircle() {
-		var c = <HTMLCanvasElement>document.getElementById("canvas");
+		var c = <HTMLCanvasElement>document.getElementById("myCanvas");
 		var ctx = c.getContext("2d");
 		ctx.beginPath();
-		ctx.arc(200,200,175,0,2*Math.PI);
-		ctx.fillStyle = 'rgb(0, 78, 104, 0,5)';
-		ctx.fill();	
+		ctx.arc(100, 75, 50, 0, 0.5 * Math.PI);
+		ctx.moveTo(100, 75);
+		ctx.lineTo(150, 75);
+		ctx.moveTo(100, 75);
+		ctx.lineTo(100, 125);
+		ctx.lineTo(150, 75);
+		ctx.stroke();
+		ctx.fillStyle = 'rgb(0, 78, 104, 0.5)';
+		ctx.fill();
 	};	
 }
