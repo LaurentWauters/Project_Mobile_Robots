@@ -4,7 +4,7 @@ import { Platform, MenuController, Nav } from 'ionic-angular';
 
 import { StatusBar } from 'ionic-native';
 
-import {ShareService} from './pages/services/ShareService';
+import {ShareService} from '../pages/services/ShareService';
 
 import { HomePage } from '../pages/home/home';
 import { ActionsPage } from '../pages/actions/actions';
