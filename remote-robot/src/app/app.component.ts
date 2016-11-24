@@ -4,6 +4,8 @@ import { Platform, MenuController, Nav } from 'ionic-angular';
 
 import { StatusBar } from 'ionic-native';
 
+import {ShareService} from './pages/services/ShareService';
+
 import { HomePage } from '../pages/home/home';
 import { ActionsPage } from '../pages/actions/actions';
 import { SayPage } from '../pages/say/say';
@@ -11,7 +13,8 @@ import { ManualPage } from '../pages/manual/manual';
 import { SettingsPage } from '../pages/settings/settings';
 
 @Component({
-  templateUrl: 'app.html'
+  templateUrl: 'app.html',
+  providers: [ShareService]
 })
 export class MyApp {
  @ViewChild(Nav) nav: Nav;
