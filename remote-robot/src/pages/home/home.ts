@@ -11,16 +11,10 @@ export class HomePage {
 
 	loginSuccess: Boolean;
 	robotService: RobotService;
-	ip = {
-		adress: ''
-	};
+	ip = {adress: ''};
 
   constructor(public navCtrl: NavController, private myRobotService: RobotService) {
 		this.robotService = myRobotService;
-
-		// robotService.getRobot().subscribe(response => {
-		// 	console.log("GET_ROBOT RESPONSE: " + response.toString());
-		// });
 	}
 
 	loginForm(form) {
