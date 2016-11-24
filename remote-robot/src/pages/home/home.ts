@@ -40,5 +40,13 @@ export class HomePage {
 				this.loginSuccess = false;
 			}	
 		})
-	}
+	};
+
+	drawCircle() {
+		var c = <HTMLCanvasElement>document.getElementById("canvas");
+		var ctx = c.getContext("2d");
+		ctx.beginPath();
+		ctx.arc(150,150,500,0,2*Math.PI);
+		ctx.stroke();	
+	}	
 }
