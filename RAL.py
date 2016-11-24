@@ -183,7 +183,7 @@ def move(x,y,d):
     yCoo = float(y)
     theta = float(d)
     motionProxy.moveTo(xCoo, yCoo, theta)
-    return [x,y,d]
+    return jsonify([x,y,d])
 
 @app.route('/move/<int:x>/<int:y>/<int:d>', methods=['GET'])
 @crossdomain(origin='*')

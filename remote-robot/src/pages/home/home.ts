@@ -17,6 +17,10 @@ export class HomePage {
 
   constructor(public navCtrl: NavController, robotService: RobotService) {
 		this.robotService = robotService;
+
+		robotService.getRobot().subscribe(response => {
+			console.log("GET_ROBOT RESPONSE: " + response.toString());
+		});
 	}
 
 	loginForm(form) {
