@@ -13,7 +13,7 @@ import { Robot } from '../models/robot';
 */
 @Injectable()
 export class RobotService {
-	robotUrl = 'http://172.16.231.48:5000';
+	robotUrl = '';
 
   constructor(public http: Http) { }
 
@@ -92,8 +92,8 @@ export class RobotService {
   //-------------------------------------------------
 
   // Login Robot - Basicly pings the root url of the RAL API. If response is http successcode 200, robot is online.
-  login(): any {
-    return this.http.get(`${this.robotUrl}`)
-      .map(res => res);
+  login(ip): any {
+    this.robotUrl = encodeURI("http://" + ip + ":5000");
+    console.log(this.robotUrl);
   }
 }
