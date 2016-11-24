@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
 
 import { RobotService } from '../../providers/robot-service';
-import {ShareService} from '../../app/ShareService';
+import {ShareService} from '../services/ShareService';
 
 import { Robot } from '../models/robot';
 
