@@ -4,8 +4,6 @@ import { NavController } from 'ionic-angular';
 import { RobotService } from '../../providers/robot-service';
 import {ShareService} from '../services/ShareService';
 
-import { Robot } from '../models/robot';
-
 @Component({
   selector: 'page-home',
   templateUrl: 'home.html'
