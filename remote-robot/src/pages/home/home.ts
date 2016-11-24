@@ -2,9 +2,7 @@ import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
 
 import { RobotService } from '../../providers/robot-service';
-import {ShareService} from '../../app/ShareService';
-
-import { Robot } from '../models/robot';
+import { ShareService } from '../../app/ShareService';
 
 @Component({
   selector: 'page-home',

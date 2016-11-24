@@ -3,7 +3,7 @@ import { ShareService } from '../../../app/ShareService';
 
 @Component({
 	selector: 'header-component',
-  	templateUrl: 'build/pages/templates/header/header.html'
+  	templateUrl: './header.html'
 })
 
 export class Header {
@@ -11,12 +11,17 @@ export class Header {
 	icon: string;
 	name: string;
 	ip: string;
-	battery: string;
+	battery: number;
 	charging: boolean;
 
 	constructor(private shareService: ShareService) {}
 
 	ngOnInit() { 
-		this.icon = this.shareService
+		var misterRobot = this.shareService.getRobot();
+		this.icon = misterRobot.getIcon();
+		this.name = misterRobot.getName();
+		this.ip = misterRobot.getIP();
+		this.battery = misterRobot.getBatteryLevel();
+		this.charging = misterRobot.getChargeStatus();
 	}
 }
