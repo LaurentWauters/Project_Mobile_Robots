@@ -10,9 +10,18 @@ import { RobotService } from '../../providers/robot-service';
 export class HomePage {
 
 	loginSuccess: Boolean
+	private robotService: RobotService
+	ip = {
+		adress: ''
+	};
 
-  constructor(public navCtrl: NavController, private robotService: RobotService) {
-		robotService.login().subscribe(response => {
+  constructor(public navCtrl: NavController, robotService: RobotService) {
+		this.robotService = robotService;
+	}
+
+	loginForm(form) {
+    console.log(form.value.adress)
+		this.robotService.login(form.value.adress).subscribe(response => {
 			console.log(response)
 			if(response.status == 200) {
 				this.loginSuccess = true;
@@ -21,5 +30,5 @@ export class HomePage {
 				this.loginSuccess = false;
 			}	
 		})
-	}
+  }
 }

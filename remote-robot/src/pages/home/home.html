@@ -21,4 +21,12 @@
 		<p>Render error message and DO NOT render robot stuff</p>
 	</div>
 
+	<form #form="ngForm" (ngSubmit)="loginForm(form)" novalidate>
+      <ion-item>
+        <ion-label>IP</ion-label>
+        <ion-input type="text" required [(ngModel)]="ip.adress" name="adress"></ion-input>
+      </ion-item>
+      <button ion-button type="submit" block>Login</button>
+    </form>
+
 </ion-content>
