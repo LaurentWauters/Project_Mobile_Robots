@@ -21,10 +21,19 @@
 		<p>Render error message and DO NOT render robot stuff</p>
 	</div>
 
-	<!-- Robot Center -->
+	<form #form="ngForm" (ngSubmit)="loginForm(form)" novalidate>
+      <ion-item>
+        <ion-label>IP</ion-label>
+        <ion-input type="text" required [(ngModel)]="ip.adress" name="adress"></ion-input>
+      </ion-item>
+      <button ion-button type="submit" block>Login</button>
+    </form>
+
+    <!-- Robot Center -->
 	<div class="roboto-icon" ng-click="drawCircle()">
 		<canvas id="canvas" width="500" height="500">
 		</canvas>
 	</div>
+
 
 </ion-content>

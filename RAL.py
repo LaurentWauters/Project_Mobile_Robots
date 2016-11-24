@@ -1,13 +1,13 @@
-#!flask/bin/python
+##!flask/bin/python
 import sys
 sys.path.append("/usr/lib/pynaoqi")
-from flask import Flask, abort, jsonify, request
+from datetime import timedelta
+from flask import Flask, abort, jsonify, request, make_response, current_app
 import naoqi
 from random import randint
-import json
-
+import json 
+from functools import update_wrapper
 from naoqi import ALProxy
-#import logger
 
 app = Flask(__name__)
 
@@ -16,7 +16,7 @@ webserverIp = "0.0.0.0"
 nao_port = 9559
 battery = 100
 chargeStatus = True
-randNum = 0
+randNum = 0    
 
 #logger = logger.Logger(4) # Initialize logger with level "debug"
 
@@ -63,92 +63,116 @@ def crossdomain(origin=None, methods=None, headers=None, max_age=21600, attach_t
 
 #INDEX
 @app.route('/')
+@crossdomain(origin='*')
 def index():
     return "Hello Robotic World!"
 
 #IP
 def getIP():
-    return jsonify({'IP': nao_host})
+    return nao_host
 
 @app.route('/getIP', methods=['GET'])
+@crossdomain(origin='*')
 def getIP_HTTP():
-    return getIP(), 200
+    return jsonify({'IP': getIP()}), 200
 
 #TYPE
 def getType():
     if randNum == 0:
-        return jsonify({'type': "PEPPER"})
+        return "PEPPER"
     elif randNum == 1:
-        return jsonify({'type': "NAO"})
+        return "NAO"
+    elif randNum == 2:
+        return "BUDDY"
     else:
-        return jsonify({'type': "BUDDY"})
+        return "JIBO"
 
 @app.route('/getType', methods=['GET'])
+@crossdomain(origin='*')
 def getType_HTTP():
-    return getType(), 200
+    return jsonify({'type':getType()}), 200
 
 #NAME
 def getName():
-    return jsonify({'name': "Mister NAO"})
+    if randNum == 0:
+        return "Mister Pepperoni"
+    elif randNum == 1:
+        return "Mister I_want_it_Nao"
+    elif randNum == 2:
+        return "Mister Buttbuddy"
+    else:
+        return "Mister Hibo_jibo"
 
 @app.route('/getName', methods=['GET'])
+@crossdomain(origin='*')
 def getName_HTTP():
-    return getName(), 200
+    return jsonify({'name':getName()}), 200
 
 #CHARGE
 def charging():
     chargeStatus = True
-    return jsonify({'status': "charging"})
+    return "charging"
 
 @app.route('/charge', methods=['GET'])
+@crossdomain(origin='*')
 def charging_HTTP():
-    return charging(), 200
+    return jsonify({'chargeStatus':charging()}), 200
 
 #UNPLUG
 def unplug():
     chargeStatus = False
-    return jsonify({'status': "unplugged"})
+    return "unplugged"
 
 @app.route('/unplug', methods=['GET'])
+@crossdomain(origin='*')
 def unplug_HTTP():
-    return unplug(), 200
+    return jsonify({'chargeStatus':unplug()}), 200
 
 #BATTERY LEVEL
 def getBatteryLevel():
     batt_json = json.dumps(battery)
-    return jsonify({'level': batt_json})
+    return batt_json
 
 @app.route('/getBatteryLevel', methods=['GET'])
+@crossdomain(origin='*')
 def getBatteryLevel_HTTP():
-    return getBatteryLevel(), 200
+    return jsonify({'batteryLevel':getBatteryLevel()}), 200
 
 #GET ACTIONS
 def getActions():
-    return jsonify({'actions': ["StandInit","SitRelax","StandZero","LyingBelly","LyingBack","Stand","Crouch","Sit"]})
+    return ["StandInit","SitRelax","StandZero","LyingBelly","LyingBack","Stand","Crouch","Sit"]
 
 @app.route('/getActions', methods=['GET'])
+@crossdomain(origin='*')
 def getActions_HTTP():
-    return getActions(), 200
+    return jsonify({'actions':getActions()}), 200
 
 #DO ACTION
 def doAction(actionName):
     postureProxy = ALProxy("ALRobotPosture", nao_host, nao_port)
     postureProxy.goToPosture(str(actionName), 1.0)
-    return jsonify({'posture': postureProxy.getPostureFamily()})
+    return postureProxy.getPostureFamily()
 
 @app.route('/actions/<string:actionName>', methods=['GET'])
+@crossdomain(origin='*')
 def doAction_HTTP(actionName):
-    return doAction(actionName), 200
+    return jsonify({'posture':doAction(actionName)}), 200
 
 #ASK
 def ask(text):
     tts = ALProxy("ALTextToSpeech", nao_host, nao_port)
     tts.say(str(text))
-    return jsonify({'text': text})
+    return text
 
 @app.route('/ask/<string:text>', methods=['GET'])
+@crossdomain(origin='*')
 def ask_HTTP(text):
-    return ask(text), 200
+    return jsonify({'text': ask(text)}), 200
+
+@app.route('/fart', methods=['GET'])
+@crossdomain(origin='*')
+def fart():
+    return ask_HTTP("pfffffrrrttrtrfrtrfrtrttrffrfrtttrfrt")
 
 #MOVE
 #http://doc.aldebaran.com/2-1/_downloads/almotion_moveTo1.py
@@ -159,17 +183,19 @@ def move(x,y,d):
     yCoo = float(y)
     theta = float(d)
     motionProxy.moveTo(xCoo, yCoo, theta)
-    return jsonify({'coordinates': [x,y,d]})
+    return jsonify([x,y,d])
 
 @app.route('/move/<int:x>/<int:y>/<int:d>', methods=['GET'])
+@crossdomain(origin='*')
 def move_HTTP(x,y,d):
-    return move(x,y,d), 200
+    return jsonify({'coordinates': move(x,y,d)}), 200
 
 #GET ALL FROM ROBOT
 def getRobot():
-    return jsonify({'ip':getIP(), 'type':getType(), 'name':getName(), 'batteryLevel':getBatteryLevel(), 'chargeStatus':chargeStatus, 'posture':doAction("StandInit"), 'actions':getActions()}), 200
+    return jsonify({'ip':getIP(), 'type':getType(), 'name':getName(), 'batteryLevel':getBatteryLevel(), 'chargeStatus':chargeStatus, 'posture':doAction("StandInit"), 'actions':getActions()})
 
 @app.route('/getRobot', methods=['GET'])
+@crossdomain(origin='*')
 def getRobot_HTTP():
     return getRobot(), 200
 
