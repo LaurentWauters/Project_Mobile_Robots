@@ -46,7 +46,8 @@ export class HomePage {
 		var c = <HTMLCanvasElement>document.getElementById("canvas");
 		var ctx = c.getContext("2d");
 		ctx.beginPath();
-		ctx.arc(150,150,500,0,2*Math.PI);
-		ctx.stroke();	
-	}	
+		ctx.arc(200,200,175,0,2*Math.PI);
+		ctx.fillStyle = 'rgb(0, 78, 104, 0,5)';
+		ctx.fill();	
+	};	
 }
