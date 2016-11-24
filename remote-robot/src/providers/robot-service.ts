@@ -95,5 +95,7 @@ export class RobotService {
   login(ip): any {
     this.robotUrl = encodeURI("http://" + ip + ":5000");
     console.log(this.robotUrl);
+    return this.http.get(`${this.robotUrl}`)
+       .map(res => res);
   }
 }
