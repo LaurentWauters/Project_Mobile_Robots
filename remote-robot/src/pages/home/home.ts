@@ -40,18 +40,18 @@ export class HomePage {
 		})
 	};
 
-	drawCircle() {
-		var c = <HTMLCanvasElement>document.getElementById("myCanvas");
+	/*drawCircle() {
+		var c = <HTMLCanvasElement>document.getElementById("canvas");
 		var ctx = c.getContext("2d");
 		ctx.beginPath();
-		ctx.arc(100, 75, 50, 0, 0.5 * Math.PI);
-		ctx.moveTo(100, 75);
-		ctx.lineTo(150, 75);
-		ctx.moveTo(100, 75);
-		ctx.lineTo(100, 125);
-		ctx.lineTo(150, 75);
+		ctx.arc(150, 150, 300, 0, 0.5 * Math.PI);
+		ctx.moveTo(150, 150);
+		ctx.lineTo(300, 150);
+		ctx.moveTo(150, 150);
+		ctx.lineTo(150, 300);
+		ctx.lineTo(300, 150);
 		ctx.stroke();
 		ctx.fillStyle = 'rgb(0, 78, 104, 0.5)';
 		ctx.fill();
-	};	
+	};	*/
 }
