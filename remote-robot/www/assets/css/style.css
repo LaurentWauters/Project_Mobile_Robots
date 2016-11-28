@@ -1,0 +1,62 @@
+/*================= Home =====================*/
+ion-label {
+	background-color: #fff;
+	padding: 15px 15px 12px 15px;
+}
+ion-input {
+	display: block;
+	background-color: #FFF;
+	margin-bottom: 5px;
+	margin-left: -10px;
+	margin-top: 5px;
+}
+
+button {
+	margin-left: 20px;
+}
+
+/*-------------- Robot icon ------------------*/
+.roboto-icon {
+	background-color: #fff;
+    background: url('../img/nao.png') center;
+    background-size: cover;
+    height: 125px;
+    width: 125px;
+    margin-top: -50px;
+    position: relative;
+    margin-top: -228px;
+    margin-left: 91px;
+}
+
+@-webkit-keyframes scaling {
+    from {
+        -webkit-transform: scale(1);
+    }
+    to {
+        -webkit-transform: scale(1.2);
+    }
+}
+
+.roboto-icon:hover {
+	-webkit-animation: scaling 1s;
+    -webkit-animation-direction: alternate;
+}
+
+*/
+/*---------------------------------------------*/
+
+/*---------- Circle ---------------------------*/
+.circle {
+	z-index: -1; position: relative;
+}
+
+
+/*---------------------------------------------*/
+
+/*---------- Full -----------------------------*/
+
+.roboto {
+	margin: 50px auto;
+	margin-bottom: 100px;
+}
+
