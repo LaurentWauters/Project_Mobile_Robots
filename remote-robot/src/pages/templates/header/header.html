@@ -6,7 +6,25 @@
 		<div id="icon">{{icon}}</div>
 		<ion-title id="name">{{name}}</ion-title>
 		<div id="ip">{{ip}}</div>
-		<div id="battery">{{battery}}</div>
-		<div id="chargeStatus">{{chargeStatus}}</div>
+		<div id="battery">{{battery}} %</div>
+		<div *ngIf="charging">
+			<div>
+				<div>
+					<div>
+						<div id="batterychargingiconshit"></div>
+					</div>
+				</div>
+			</div>
+		</div>
+		
+		<div *ngIf="!charging">
+			<div>
+				<div>
+					<div>
+						<div id="batterydrainingiconshit"></div>
+					</div>
+				</div>
+			</div>
+		</div>
 	</ion-navbar>
 </ion-header>

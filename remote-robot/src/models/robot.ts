@@ -18,7 +18,7 @@ export class Robot {
 		}
 	}
 
-	//ONLY GETTERS, SETTERS CAN BE IMPLEMENTED, BUT OBSOLETE AS OF THIS TIME
+	//GET & SET
 	getIP() { return this.ip; }
 	setIP(ip) { this.ip = ip; }
 
