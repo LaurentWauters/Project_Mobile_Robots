@@ -4,6 +4,11 @@ import { NavController } from 'ionic-angular';
 import { RobotService } from '../../providers/robot-service';
 import {ShareService} from '../services/ShareService';
 
+import { ActionsPage } from '../actions/actions'
+import { ManualPage } from '../manual/manual'
+import { SayPage } from '../say/say'
+import { SettingsPage } from '../settings/settings'
+
 @Component({
   selector: 'page-home',
   templateUrl: 'home.html'
@@ -45,5 +50,22 @@ export class HomePage {
 		ctx.arc(200,200,175,0,2*Math.PI);
 		ctx.fillStyle = 'rgb(0, 78, 104, 0,5)';
 		ctx.fill();	
-	};	
+	};
+
+	openActions() {
+		console.log("Actions page button clicked")
+		this.navCtrl.push(ActionsPage);
+	}	
+
+	openSay() {
+		this.navCtrl.push(SayPage);
+	}
+
+	openSettings() {
+		this.navCtrl.push(SettingsPage);
+	}
+
+	openManual() {
+		this.navCtrl.push(ManualPage);
+	}
 }

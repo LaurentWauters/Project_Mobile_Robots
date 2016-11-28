@@ -17,13 +17,21 @@
         <ion-label>IP</ion-label>
         <ion-input type="text" required [(ngModel)]="ip.adress" name="address"></ion-input>
       </ion-item>
-      <button ion-button type="submit" block>Login</button>
-    </form>
+      <button ion-button type="submit">Login</button>
+  </form>
 
        <!-- Robot Center -->
-    <div class="roboto-icon" ng-click="drawCircle()">
+  <div class="roboto-icon" ng-click="drawCircle()">
 		<canvas id="canvas" style="width: 100%; height: 100%;">
 		</canvas>
+	</div>
+
+	<div>
+		<!--Buttons to call stuff-->
+		<button ion-button (click)="openActions()">Actions</button>
+		<button ion-button (click)="openSay()">Say</button>
+		<button ion-button (click)="openSettings()">Settings</button>
+		<button ion-button (click)="openManual()">Manual</button>
 	</div>
 
 
