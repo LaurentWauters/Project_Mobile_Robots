@@ -23,7 +23,7 @@ export class MyApp {
   rootPage: any = HomePage;
   pages: Array<{title: string, component: any}>;
 
-  constructor(public platform: Platform,  public menu: MenuController) {
+  constructor(public platform: Platform,  private shareService: ShareService, public menu: MenuController) {
     this.initializeApp();
 
     // set our app's pages

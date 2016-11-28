@@ -1,53 +1,40 @@
-<ion-header>
-	<ion-navbar>
-		<button ion-button icon-only menuToggle>
-			<ion-icon name="menu"></ion-icon> 
-		</button>
-		<ion-title>
-			Home
-		</ion-title>
-	</ion-navbar>
-</ion-header>
-
 <ion-content padding>
 	<h3>Home page</h3>
 
-	<div *ngIf="loginSuccess">
-		<h1>Successfully pinged robot</h1>
-		<p>Render robot stuff</p>
-	</div>
 	<div *ngIf="!loginSuccess">
-		<h1>Unsuccessfully pinged robot</h1>
-		<p>Render error message and DO NOT render robot stuff</p>
+		<form #form="ngForm" (ngSubmit)="loginForm(form)" novalidate>
+			<ion-item>
+				<ion-label>IP</ion-label>
+				<ion-input type="text" required [(ngModel)]="ip.address" name="address"></ion-input>
+			</ion-item>
+			<button ion-button type="submit">Login</button>
+		</form>
 	</div>
 
-	<form #form="ngForm" (ngSubmit)="loginForm(form)" novalidate>
-      <ion-item>
-        <ion-label>IP</ion-label>
-        <ion-input type="text" required [(ngModel)]="ip.adress" name="adress"></ion-input>
-      </ion-item>
-      <button ion-button type="submit">Login</button>
-  </form>
-
-       <!-- Robot Center -->
-  <div class="roboto">
-  	<div class="circle">
-			<img src="img/c_leftup_full.png">
-			<img src="img/c_rightup_full.png">
-			<br/>
-			<img src="img/c_leftdown_full.png">
-			<img src="img/c_rightdown_full.png">
+	<div *ngIf="loginSuccess">
+		<div *ngIf="shareService.loaded">
+			<!--<div>{{shareService.loaded}}</div>-->
+			<!--<header-component></header-component>-->
+			<!-- Robot Center -->
+			<!-- Robot Center -->
+			<div class="roboto">
+				<div class="circle">
+					<img src="img/c_leftup_full.png">
+					<img src="img/c_rightup_full.png">
+					<br/>
+					<img src="img/c_leftdown_full.png">
+					<img src="img/c_rightdown_full.png">
+				</div>
+				<div class="roboto-icon">
+				</div>
+			</div>
+			<div>
+				<!--Buttons to call stuff-->
+				<button ion-button (click)="openActions()">Actions</button>
+				<button ion-button (click)="openSay()">Say</button>
+				<button ion-button (click)="openSettings()">Settings</button>
+				<button ion-button (click)="openManual()">Manual</button>
+			</div>
+		</div>
 	</div>
-	<div class="roboto-icon">
-	</div>
-</div>
-	<div>
-		<!--Buttons to call stuff-->
-		<button ion-button (click)="openActions()">Actions</button>
-		<button ion-button (click)="openSay()">Say</button>
-		<button ion-button (click)="openSettings()">Settings</button>
-		<button ion-button (click)="openManual()">Manual</button>
-	</div>
-
-
 </ion-content>

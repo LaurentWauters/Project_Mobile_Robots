@@ -8,6 +8,9 @@ import { SayPage } from '../pages/say/say';
 import { ManualPage } from '../pages/manual/manual';
 import { SettingsPage } from '../pages/settings/settings';
 
+//Templateinjections
+import { HeaderComponent } from '../pages/templates/header/header'
+
 import { RobotService } from '../providers/robot-service';
 
 @NgModule({
@@ -17,7 +20,8 @@ import { RobotService } from '../providers/robot-service';
     ActionsPage,
     SayPage,
     ManualPage,
-    SettingsPage
+    SettingsPage,
+    HeaderComponent
   ],
   imports: [
     IonicModule.forRoot(MyApp)
@@ -32,7 +36,7 @@ import { RobotService } from '../providers/robot-service';
     SettingsPage
   ],
   providers: [
-     RobotService
+     RobotService,
   ]
 })
 export class AppModule {}

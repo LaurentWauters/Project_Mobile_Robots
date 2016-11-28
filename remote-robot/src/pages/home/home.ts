@@ -2,12 +2,14 @@ import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
 
 import { RobotService } from '../../providers/robot-service';
-import {ShareService} from '../services/ShareService';
+import { ShareService } from '../services/ShareService';
 
 import { ActionsPage } from '../actions/actions'
 import { ManualPage } from '../manual/manual'
 import { SayPage } from '../say/say'
 import { SettingsPage } from '../settings/settings'
+
+import { Robot } from '../../models/robot'
 
 @Component({
   selector: 'page-home',
@@ -15,12 +17,10 @@ import { SettingsPage } from '../settings/settings'
 })
 export class HomePage {
 
-	loginSuccess: Boolean;
+	loginSuccess: boolean;
 	robotService: RobotService;
+	ip = {address: ''};
 	shareService: ShareService;
-	ip = {
-		adress: ''
-	};
 
   constructor(public navCtrl: NavController, private myShareService: ShareService, private myRobotService: RobotService) {
 		this.robotService = myRobotService;
@@ -28,23 +28,25 @@ export class HomePage {
 	}
 
 	loginForm(form) {
-    console.log(form.value.adress);
-		// this.robotService.login(form.value.adress);
+    	console.log("LOGIN-ENTRY: " + form.value.address);
+    	
+		this.robotService.login(form.value.address).subscribe(response => {
 
-		this.robotService.login(form.value.adress).subscribe(response => {
-			console.log(response)
 			if(response.status == 200) {
-				this.robotService.getRobot().subscribe(response => {
-					this.shareService.setRobot(response);
-				});
-				this.loginSuccess = true;				
-			}
-			else {
+				console.log("CORRECT RESPONSE STATUS");
+				this.robotService.getRobot().subscribe(
+					response => 
+						this.shareService.setRobot(
+							new Robot(response.ip, response.type, response.name, response.batteryLevel, response.chargeStatus, response.posture, response.actions)
+						)
+				);
+				this.loginSuccess = true;
+			} else {
+				console.log("FALSE RESPONSE STATUS");
 				this.loginSuccess = false;
 			}	
-		})
+		});
 	};
-
 
 	openActions() {
 		console.log("Actions page button clicked")
