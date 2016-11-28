@@ -9,8 +9,64 @@
 			Manual
 		</ion-title>
 	</ion-navbar>
+	<ion-toolbar no-border-top>
+    	<ion-segment [(ngModel)]="robot">
+      		<ion-segment-button value="PEPPER">
+        		PEPPER
+      		</ion-segment-button>
+      		<ion-segment-button value="NAO">
+        		NAO
+      		</ion-segment-button>
+      		<ion-segment-button value="BUDDY">
+        		BUDDY
+      		</ion-segment-button>
+			  <ion-segment-button value="JIBO">
+        		JIBO
+      		</ion-segment-button>
+    	</ion-segment>
+	</ion-toolbar>
 </ion-header>
 
 <ion-content padding>
-	<h3>Manual page</h3>
+	<div [ngSwitch]="robot">
+    <ion-list *ngSwitchCase="'PEPPER'">
+      <ion-item *ngFor="let action of actions">
+        <ion-thumbnail item-left>
+          <!--<img src="assets/img/thumbnail-puppy-1.jpg">-->
+        </ion-thumbnail>
+        <h2>{{action}}</h2>
+		<p>This paragraph is supposed to descirbe the function. So we fill this up with blabla lalalalala lilaaaa, hip hoi!</p>
+      </ion-item>
+    </ion-list>
+
+    <ion-list *ngSwitchCase="'NAO'">
+      <ion-item *ngFor="let action of actions">
+        <ion-thumbnail item-left>
+          <!--<img src="assets/img/thumbnail-puppy-1.jpg">-->
+        </ion-thumbnail>
+        <h2>{{action}}</h2>
+		<p>This paragraph is supposed to descirbe the function. So we fill this up with blabla lalalalala lilaaaa, hip hoi!</p>
+      </ion-item>
+    </ion-list>
+
+    <ion-list *ngSwitchCase="'BUDDY'">
+      <ion-item *ngFor="let action of actions">
+        <ion-thumbnail item-left>
+          <!--<img src="assets/img/thumbnail-puppy-1.jpg">-->
+        </ion-thumbnail>
+        <h2>{{action}}</h2>
+		<p>This paragraph is supposed to descirbe the function. So we fill this up with blabla lalalalala lilaaaa, hip hoi!</p>
+      </ion-item>
+    </ion-list>
+
+	<ion-list *ngSwitchCase="'JIBO'">
+      <ion-item *ngFor="let action of actions">
+        <ion-thumbnail item-left>
+          <!--<img src="assets/img/thumbnail-puppy-1.jpg">-->
+        </ion-thumbnail>
+        <h2>{{action}}</h2>
+		<p>This paragraph is supposed to descirbe the function. So we fill this up with blabla lalalalala lilaaaa, hip hoi!</p>
+      </ion-item>
+    </ion-list>
+  </div>
 </ion-content>
