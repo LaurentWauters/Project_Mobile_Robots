@@ -4,6 +4,11 @@ import { NavController } from 'ionic-angular';
 import { RobotService } from '../../providers/robot-service';
 import {ShareService} from '../services/ShareService';
 
+import { ActionsPage } from '../actions/actions'
+import { ManualPage } from '../manual/manual'
+import { SayPage } from '../say/say'
+import { SettingsPage } from '../settings/settings'
+
 @Component({
   selector: 'page-home',
   templateUrl: 'home.html'
@@ -40,7 +45,25 @@ export class HomePage {
 		})
 	};
 
-	/*drawCircle() {
+
+	openActions() {
+		console.log("Actions page button clicked")
+		this.navCtrl.push(ActionsPage);
+	}	
+
+	openSay() {
+		this.navCtrl.push(SayPage);
+	}
+
+	openSettings() {
+		this.navCtrl.push(SettingsPage);
+	}
+
+	openManual() {
+		this.navCtrl.push(ManualPage);
+	}
+
+		/*drawCircle() {
 		var c = <HTMLCanvasElement>document.getElementById("canvas");
 		var ctx = c.getContext("2d");
 		ctx.beginPath();
