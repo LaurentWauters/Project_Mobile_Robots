@@ -1,12 +1,12 @@
 import {Component} from '@angular/core';
-import { ShareService } from '../../../app/ShareService';
+import { ShareService } from '../../services/ShareService';
 
 @Component({
 	selector: 'header-component',
   	templateUrl: './header.html'
 })
 
-export class Header {
+export class HeaderComponent {
 
 	icon: string;
 	name: string;
