@@ -16,7 +16,6 @@ webserverIp = "0.0.0.0"
 nao_port = 9559
 battery = 100
 chargeStatus = True
-randNum = 0    
 
 #logger = logger.Logger(4) # Initialize logger with level "debug"
 
@@ -183,7 +182,7 @@ def move(x,y,d):
     yCoo = float(y)
     theta = float(d)
     motionProxy.moveTo(xCoo, yCoo, theta)
-    return jsonify([x,y,d])
+    return [x,y,d]
 
 @app.route('/move/<int:x>/<int:y>/<int:d>', methods=['GET'])
 @crossdomain(origin='*')
@@ -199,6 +198,12 @@ def getRobot():
 def getRobot_HTTP():
     return getRobot(), 200
 
+def initGlobals():
+    global randNum # <- global declaration
+    randNum = randint(0,3)
+
 if __name__ == '__main__':
+    initGlobals()
+    print(randNum)
     app.run(debug=True,host=webserverIp)
-    randNum = randint(0,2)
+    
