@@ -1,6 +1,6 @@
 <ion-content padding>
 	<h3>Home page</h3>
-
+ 
 	<div *ngIf="!loginSuccess">
 		<form #form="ngForm" (ngSubmit)="loginForm(form)" novalidate>
 			<ion-item>
@@ -11,7 +11,7 @@
 		</form>
 	</div>
 
-	<div *ngIf="loginSuccess">
+	<div *ngIf="loginSuccess"> 
 		<div *ngIf="shareService.loaded">
 			<header-component></header-component>
 			<!-- Robot Center -->
