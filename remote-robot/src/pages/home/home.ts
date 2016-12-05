@@ -46,8 +46,8 @@ export class HomePage {
 						);
 							//Write IP to database
 						console.log("IP: ");
-		//				this.dbService.addRobot(this.shareService.getRobot());
-						this.dbService.testPost();
+						this.dbService.addRobot(this.shareService.getRobot());
+						// this.dbService.testPost();
 					}
 				);
 				this.loginSuccess = true;
