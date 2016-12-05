@@ -12,10 +12,14 @@ import { SayPage } from '../pages/say/say';
 import { ManualPage } from '../pages/manual/manual';
 import { SettingsPage } from '../pages/settings/settings';
 
+import {CustExtBrowserXhr} from '../../cust-ext-browser-xhr';
+
 @Component({
   templateUrl: 'app.html',
-  providers: [ShareService]
+  providers: [ShareService, CustExtBrowserXhr]
 })
+
+
 export class MyApp {
  @ViewChild(Nav) nav: Nav;
 

@@ -19,4 +19,8 @@ export class ShareService {
     getRobot() {
         return <Robot>this.robot;
     }
+
+    getLoaded() {
+        return this.loaded;
+    }
 }

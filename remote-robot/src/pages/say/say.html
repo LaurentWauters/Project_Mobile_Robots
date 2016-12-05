@@ -1,3 +1,16 @@
+		<style>
+#container {
+    margin: 0px auto;
+    width: 500px;
+    height: 375px;
+    border: 10px #333 solid;
+}
+#videoElement {
+    width: 500px;
+    height: 375px;
+    background-color: #666;
+}
+</style>
 <ion-header>
 <!-- Custom header injection -->
 <header-component></header-component>
@@ -26,4 +39,15 @@
         <ion-item *ngFor="let response of responses">{{response}}</ion-item>
   </ion-list>
 
+	<!--Upload picture for face recognition-->
+	<ion-card>
+    	<ion-card-content>
+      		Mood recognition
+
+      	<button (click)="takePicture()">Take a Picture</button>
+
+      	Latest Picture:
+      	<img [src]="base64Image" *ngIf="base64Image" />
+    </ion-card-content>
+  </ion-card>
 </ion-content>

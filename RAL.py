@@ -100,7 +100,7 @@ def getName():
     elif randNum == 2:
         return "Mister Buttbuddy"
     else:
-        return "Mister Hibo_jibo"
+        return "Mister Jiboshima"
 
 @app.route('/getName', methods=['GET'])
 @crossdomain(origin='*')
@@ -145,6 +145,7 @@ def getActions():
 @crossdomain(origin='*')
 def getActions_HTTP():
     return jsonify({'actions':getActions()}), 200
+
 
 #DO ACTION
 def doAction(actionName):
