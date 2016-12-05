@@ -1,3 +1,20 @@
+/*-------------- Header ------------------*/
+ion-navbar {
+    width: 100vh;
+}
+
+ion-navbar div{
+    display: inline-block;
+}
+
+.navbar img {
+    margin-left: 10px;
+}
+
+ion-col {
+    text-align: center;
+    font-size: 150%;
+}
 /*================= Home =====================*/
 ion-label {
 	background-color: #fff;
@@ -17,15 +34,13 @@ button {
 
 /*-------------- Robot icon ------------------*/
 .roboto-icon {
-	background-color: #fff;
-    background: url('../img/nao.png') center;
+    background-image: url("../img/roboto/nao.png");
     background-size: cover;
-    height: 125px;
-    width: 125px;
-    margin-top: -50px;
+    height: 130px;
+    width: 140px;
     position: relative;
     margin-top: -228px;
-    margin-left: 91px;
+    margin-left: 81px;
 }
 
 @-webkit-keyframes scaling {
@@ -47,7 +62,8 @@ button {
 
 /*---------- Circle ---------------------------*/
 .circle {
-	z-index: -1; position: relative;
+	z-index: -1; 
+    position: relative;
 }
 
 
@@ -56,7 +72,7 @@ button {
 /*---------- Full -----------------------------*/
 
 .roboto {
-	margin: 50px auto;
-	margin-bottom: 100px;
+	width: 100vh;
+	margin: 125px auto;
 }
 

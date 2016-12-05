@@ -1,30 +1,21 @@
 <ion-header>
-	<ion-navbar>
-		<button ion-button icon-only menuToggle>
-			<ion-icon name="menu"></ion-icon> 
-		</button>
-		<div id="icon">{{icon}}</div>
-		<ion-title id="name">{{name}}</ion-title>
-		<div id="ip">{{ip}}</div>
-		<div id="battery">{{battery}} %</div>
-		<div *ngIf="charging">
-			<div>
-				<div>
-					<div>
-						<div id="batterychargingiconshit"></div>
+	<ion-navbar class="bar-positive" align-title="center">
+		<ion-grid class="navbar">
+			<ion-row>
+				<ion-col><img src="{{icon}}" height="40px" width="40px"></ion-col>
+				<ion-col>{{name}}</ion-col>
+				<ion-col>{{ip}}</ion-col>
+				<ion-col>{{battery}}%
+					<div style="display: inline-block" id="charger">
+						<div *ngIf="charging">
+					  		<ion-icon name="battery-charging"></ion-icon>
+						</div>		
+						<div *ngIf="!charging">
+					  		<ion-icon name="battery-dead"></ion-icon>
+						</div>
 					</div>
-				</div>
-			</div>
-		</div>
-		
-		<div *ngIf="!charging">
-			<div>
-				<div>
-					<div>
-						<div id="batterydrainingiconshit"></div>
-					</div>
-				</div>
-			</div>
-		</div>
+				</ion-col>
+			</ion-row>
+		</ion-grid>
 	</ion-navbar>
 </ion-header>

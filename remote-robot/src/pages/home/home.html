@@ -1,6 +1,4 @@
 <ion-content padding>
-	<h3>Home page</h3>
- 
 	<div *ngIf="!loginSuccess">
 		<form #form="ngForm" (ngSubmit)="loginForm(form)" novalidate>
 			<ion-item>
@@ -17,13 +15,14 @@
 			<!-- Robot Center -->
 			<div class="roboto">
 				<div class="circle">
-					<img src="img/c_leftup_full.png">
-					<img src="img/c_rightup_full.png">
+					<img src="img/circle/c_leftup_full.png">
+					<img src="img/circle/c_rightup_full.png">
 					<br/>
-					<img src="img/c_leftdown_full.png">
-					<img src="img/c_rightdown_full.png">
+					<img src="img/circle/c_leftdown_full.png">
+					<img src="img/circle/c_rightdown_full.png">
 				</div>
 				<div class="roboto-icon">
+					<img src="{{splashImg}}" height="100px" width="100px"/>
 				</div>
 			</div>
 			<div>

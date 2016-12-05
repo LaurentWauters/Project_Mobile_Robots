@@ -16,7 +16,7 @@
 
 	<form #form="ngForm" (ngSubmit)="doSpeak(form)" novalidate>
       <ion-item>
-        <ion-label>Text to say</ion-label>
+        <ion-label>Text</ion-label>
         <ion-input type="text" required [(ngModel)]="text" name="text"></ion-input>
       </ion-item>
       <button ion-button type="submit">Say</button>
