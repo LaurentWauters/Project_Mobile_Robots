@@ -12,6 +12,7 @@ import { SettingsPage } from '../pages/settings/settings';
 import { HeaderComponent } from '../pages/templates/header/header'
 
 import { RobotService } from '../providers/robot-service';
+import { DBService } from '../providers/db-service';
 
 @NgModule({
   declarations: [
@@ -37,6 +38,7 @@ import { RobotService } from '../providers/robot-service';
   ],
   providers: [
      RobotService,
+     DBService
   ]
 })
 export class AppModule {}

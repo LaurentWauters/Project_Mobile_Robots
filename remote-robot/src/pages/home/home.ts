@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
 
 import { RobotService } from '../../providers/robot-service';
+import { DBService } from '../../providers/db-service';
 import { ShareService } from '../services/ShareService';
 
 import { ActionsPage } from '../actions/actions'
@@ -19,28 +20,39 @@ export class HomePage {
 
 	loginSuccess: boolean;
 	robotService: RobotService;
+	dbService: DBService;
 	ip = {address: ''};
 	shareService: ShareService;
 
-  constructor(public navCtrl: NavController, private myShareService: ShareService, private myRobotService: RobotService) {
+  constructor(public navCtrl: NavController, private myShareService: ShareService, private myRobotService: RobotService, private myDBService: DBService) {
 		this.robotService = myRobotService;
+		this.dbService = myDBService;
 		this.shareService = myShareService;
 	}
 
 	loginForm(form) {
-    	console.log("LOGIN-ENTRY: " + form.value.address);
-    	
-		this.robotService.login(form.value.address).subscribe(response => {
+		//IP input
+		var input = form.value.address;
+
+    	console.log("LOGIN-ENTRY: " + input);
+		this.robotService.login(input).subscribe(response => {
 
 			if(response.status == 200) {
 				console.log("CORRECT RESPONSE STATUS");
 				this.robotService.getRobot().subscribe(
-					response => 
+					response => {
 						this.shareService.setRobot(
 							new Robot(response.ip, response.type, response.name, response.batteryLevel, response.chargeStatus, response.posture, response.actions)
-						)
+						);
+							//Write IP to database
+						console.log("IP: ");
+		//				this.dbService.addRobot(this.shareService.getRobot());
+						this.dbService.testPost();
+					}
 				);
 				this.loginSuccess = true;
+
+
 			} else {
 				console.log("FALSE RESPONSE STATUS");
 				this.loginSuccess = false;
