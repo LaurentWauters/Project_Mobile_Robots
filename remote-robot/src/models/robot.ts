@@ -41,7 +41,7 @@ export class Robot {
 	setActions(actions) { this.actions = actions; }
 
 	getIcon() { return this.icon; }
-	setIcont(icon) { this.icon = icon; }
+	setIcon(icon) { this.icon = icon; }
 
 	getSplashImg() { return this.splashImg; }
 	setSplashImg(splash) { this.splashImg = splash; }

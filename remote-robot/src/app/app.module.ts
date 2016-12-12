@@ -10,6 +10,7 @@ import { SettingsPage } from '../pages/settings/settings';
 
 //Templateinjections
 import { HeaderComponent } from '../pages/templates/header/header'
+import { FooterComponent } from '../pages/templates/footer/footer'
 
 import { RobotService } from '../providers/robot-service';
 import { DBService } from '../providers/db-service';
@@ -22,7 +23,8 @@ import { DBService } from '../providers/db-service';
     SayPage,
     ManualPage,
     SettingsPage,
-    HeaderComponent
+    HeaderComponent,
+    FooterComponent
   ],
   imports: [
     IonicModule.forRoot(MyApp)

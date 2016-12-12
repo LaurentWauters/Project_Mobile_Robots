@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import { NavController, ActionSheetController, ToastController, Platform, LoadingController, Loading } from 'ionic-angular';
-import { Toast, Camera, File, Transfer} from 'ionic-native';
+import { NavController, ToastController } from 'ionic-angular';
+import { Camera } from 'ionic-native';
 
 import { RobotService } from '../../providers/robot-service';
 import { ShareService } from '../services/ShareService';

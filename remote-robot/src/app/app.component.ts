@@ -4,7 +4,7 @@ import { Platform, MenuController, Nav } from 'ionic-angular';
 
 import { StatusBar } from 'ionic-native';
 
-import {ShareService} from '../pages/services/ShareService';
+import { ShareService } from '../pages/services/ShareService';
 
 import { HomePage } from '../pages/home/home';
 import { ActionsPage } from '../pages/actions/actions';
@@ -12,7 +12,7 @@ import { SayPage } from '../pages/say/say';
 import { ManualPage } from '../pages/manual/manual';
 import { SettingsPage } from '../pages/settings/settings';
 
-import {CustExtBrowserXhr} from '../../cust-ext-browser-xhr';
+import { CustExtBrowserXhr } from '../../cust-ext-browser-xhr';
 
 @Component({
   templateUrl: 'app.html',
