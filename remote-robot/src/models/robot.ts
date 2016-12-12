@@ -8,13 +8,13 @@ export class Robot {
 				public chargeStatus: boolean, public posture: string, public actions: string[]) {
 		switch(type) {
 			case 'PEPPER': 
-				this.icon = "..."; this.splashImg = "..."; break;
+				this.icon = "img/icons/pepperico.png"; this.splashImg = "img/roboto/pepper.png"; break;
 			case 'NAO':
-				this.icon = "..."; this.splashImg = "..."; break;
+				this.icon = "img/icons/naoico.png"; this.splashImg = "img/roboto/nao.png"; break;
 			case 'BUDDY':
-				this.icon = "..."; this.splashImg = "..."; break;
+				this.icon = "img/icons/buddynewico.png"; this.splashImg = "img/roboto/buddynew.png"; break;
 			case 'JIBO':
-				this.icon = "..."; this.splashImg = "..."; break;
+				this.icon = "img/icons/jiboico.png"; this.splashImg = "img/roboto/jibo.png"; break;
 		}
 	}
 

@@ -1,6 +1,10 @@
+<<<<<<< HEAD
 <ion-content padding class="has-footer">
 	<h3>Home page</h3>
 
+=======
+<ion-content padding>
+>>>>>>> 45a1259322e4dcea9a07548e376da9ada024f7e7
 	<div *ngIf="!loginSuccess">
 		<form #form="ngForm" (ngSubmit)="loginForm(form)" novalidate>
 			<ion-item>
@@ -11,20 +15,22 @@
 		</form>
 	</div>
 
-	<div *ngIf="loginSuccess">
+	<div *ngIf="loginSuccess"> 
 		<div *ngIf="shareService.loaded">
 			<header-component></header-component>
 			<!-- Robot Center -->
 			<div class="roboto">
-				<div class="circle">
-					<img src="img/c_leftup_full.png">
-					<img src="img/c_rightup_full.png">
-					<br/>
-					<img src="img/c_leftdown_full.png">
-					<img src="img/c_rightdown_full.png">
-				</div>
-
-				<div class="roboto-icon">
+				<div class="center">
+					<div class="circle">
+						<img src="img/circle/c_leftup_full.png">
+						<img src="img/circle/c_rightup_full.png">
+						<br/>
+						<img src="img/circle/c_leftdown_full.png">
+						<img src="img/circle/c_rightdown_full.png">
+					</div>
+					<div class="roboto-img">
+						<img src="{{splashImg}}" height="100px" width="100px"/>
+					</div>
 				</div>
 			</div>
 			<div>

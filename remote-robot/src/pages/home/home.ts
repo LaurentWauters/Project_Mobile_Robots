@@ -23,6 +23,7 @@ export class HomePage {
 	dbService: DBService;
 	ip = {address: ''};
 	shareService: ShareService;
+	splashImg: string;
 
   constructor(public navCtrl: NavController, private myShareService: ShareService, private myRobotService: RobotService, private myDBService: DBService) {
 		this.robotService = myRobotService;
@@ -44,11 +45,13 @@ export class HomePage {
 						this.shareService.setRobot(
 							new Robot(response.ip, response.type, response.name, response.batteryLevel, response.chargeStatus, response.posture, response.actions)
 						);
+						this.splashImg = this.shareService.getRobot().getSplashImg();
 							//Write IP to database
 						console.log("IP: ");
 						this.dbService.addRobot(this.shareService.getRobot());
 						// this.dbService.testPost();
 					}
+
 				);
 				this.loginSuccess = true;
 
