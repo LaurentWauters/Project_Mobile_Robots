@@ -2,8 +2,8 @@
 	<ion-navbar class="bar-positive" align-title="center">
 		<ion-grid class="navbar">
 			<ion-row>
-				<ion-col><img src="{{icon}}" height="40px" width="40px"></ion-col>
-				<ion-col>{{name}}</ion-col>
+				<ion-col (click)="openName()" id="img-col"><img src="{{icon}}" height="40px" width="40px"></ion-col>
+				<ion-col showWhen="landscape">{{name}}</ion-col>
 				<ion-col>{{ip}}</ion-col>
 				<ion-col>{{battery}}%
 					<div style="display: inline-block" id="charger">

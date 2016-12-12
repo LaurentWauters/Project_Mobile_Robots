@@ -6,7 +6,18 @@
 	ctx.stroke();
 }*/
 
-/*$(document).ready(function() {
-	$("circle")
-});
-*/
+$(document).ready(function() {
+	$(".circle").hide();
+})
+
+$(".roboto-img").hover(function(){
+	$("img").animate({
+		"width": 200,
+		"height": 200
+	}, 1500);
+})
+
+$(".roboto-img").click(function(){
+	$(".circle").slideToggle();
+})
+;

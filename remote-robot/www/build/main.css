@@ -21113,3 +21113,14 @@ sub {
     padding-top: calc(16px + 20px);
   }
 }
+
+page-home roboto img {
+  height: 70vh !important;
+  width: auto !important;
+  margin: auto;
+  display: block;
+  -webkit-align-items: center;
+  -ms-flex-align: center;
+  -ms-grid-row-align: center;
+  align-items: center;
+}
